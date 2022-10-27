@@ -1,4 +1,5 @@
 #Used to set bulk AD passwords
+
 #CSV file must be:
 #samAccountName|Password
 
