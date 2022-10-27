@@ -1,4 +1,5 @@
-﻿$Folder = "C:\Temp"
+#Sets the folder
+$Folder = "C:\Temp"
 
 #Delete files older than 2 months
 Get-ChildItem $Folder -Recurse -Force -ea 0 |
