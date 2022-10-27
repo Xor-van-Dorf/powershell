@@ -1,7 +1,7 @@
 ﻿# Set up path and user variables #
 $AESKeyFilePath = "c:\AESkey\aeskey.txt" # location of the AESKey #
 $SecurePwdFilePath = "c:\AESkey\credpassword.txt" # Location of the file that hosts the encrypted password #               
-$userUPN = "garagemorin\support" # User account login #
+$userUPN = "DOMAIN\USER" # User account login #
  
 # Use key and password to create local secure password #
 $AESKey = Get-Content -Path $AESKeyFilePath
