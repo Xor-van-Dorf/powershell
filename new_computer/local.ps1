@@ -1,4 +1,4 @@
-﻿#####################SET KEYBOARD LAYOUT#####################
+#####################SET KEYBOARD LAYOUT#####################
 Set-WinSystemLocale fr-CA
 Set-WinUserLanguageList -LanguageList fr-CA
 $languageList = Get-WinUserLanguageList
@@ -8,6 +8,10 @@ Set-WinUserLanguageList $languageList -Force
 
 #####################SET TIME ZONE#####################
 Set-TimeZone -Name "Est"
+
+#Change default Explorer view to This PC...
+Write-Host "Changing default Explorer view to This PC..."
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1
 
 #####################REMOVE BLOATWARE#####################
 Get-AppxPackage *Microsoft.3dbuilder* | Remove-AppxPackage
@@ -72,7 +76,7 @@ Get-AppxPackage *Microsoft.BingTranslator* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage
 Get-AppxPackage *Microsoft.MSPaint* | Remove-AppxPackage
 
-#####################Set Sound Schemes to no sound#####################
+#Disable Windows sounds
 Write-Host "`nSetting Sound Schemes to 'No Sound' .." -foregroundcolor Gray 
 
 $Path = "HKCU:\AppEvents\Schemes"
@@ -128,4 +132,9 @@ else {
 }
 
 #####################QOL TWEAKS#####################
-reg import .\Tweaks.reg
+New-ItemProperty -Path HKCU:\Software\Microsoft\GameBar -Name AllowAutoGameMode -PropertyType DWORD -Value 0
+New-ItemProperty -Path HKCU:\Software\Microsoft\GameBar -Name AutoGameModeEnabled -PropertyType DWORD -Value 0
+New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name SearchboxTaskbarMode -PropertyType DWORD -Value 0
+New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name ShowTaskViewButton -PropertyType DWORD -Value 0
+New-Item -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name People
+New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People -Name PeopleBand -PropertyType DWORD -Value 0
