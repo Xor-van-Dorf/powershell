@@ -1,0 +1,5 @@
+#CSV must be:
+#oldname,newname
+#DESKTOP-7HEILUJ, new name
+
+Import-Csv "c:\temp\computers.csv" | Rename-Computer -ComputerName { $_.oldname } -DomainCredential DOMAIN\administrator -Force
